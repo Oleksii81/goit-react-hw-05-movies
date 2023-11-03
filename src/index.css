@@ -1,4 +1,4 @@
-@import-normalize; /* bring in normalize.css styles */
+@import url('../src/base/modern-normalize.css');
 
 body {
   margin: 0;
@@ -7,8 +7,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #1a4d90c0;
 }
-
+input {
+  all: unset;
+}
+button {
+  all: unset;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

@@ -21,19 +21,22 @@ const Home = () => {
   const path = 'https://image.tmdb.org/t/p/w300';
   return (
     <HomeContainer>
-      <h1 className="wellcome-title">Wellcome to Movie Land</h1>
-      <h3 className="popular-title">Most popular movies today</h3>
+      <h1 className="wellcome-title">Trending Movies</h1>
       <ul className="top-list">
         {trendMovies.map(movie => (
-          <li key={movie.id}>
+          <li className="movie-card" key={movie.id}>
             <Link
               className="top-item"
               to={`/movies/${movie.id}`}
               state={{ from: location }}
             >
-              {/* {movie.original_title || movie.name} */}
-              <img src={path + movie.poster_path} alt={movie.original_title} />
+              <img 
+              className='movie-img'
+              width={210}
+              height={315}
+              src={path + movie.poster_path} alt={movie.original_title} />
             </Link>
+            <p className='original-title'>{movie.original_title}</p>
           </li>
         ))}
         {isLoading && <Loader />}

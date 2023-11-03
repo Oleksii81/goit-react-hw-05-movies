@@ -58,15 +58,17 @@ const Movies = () => {
                 >
                   <img
                     className="search-movie-img"
+                    width={210}
+                    height={315}
                     src={
                       movie.poster_path
                         ? path + movie.poster_path
                         : 'http://www.suryalaya.org/images/no_image.jpg'
                     }
                     alt={movie.original_title}
-                    width={300}
                   />
-                  {movie.title || movie.name}
+                  <p className='original-title'>{movie.title}</p>
+                  
                 </Link>
               </li>
             );
