@@ -8,7 +8,7 @@ import { lazy } from 'react';
 const Home = lazy(() => import('../pages/home/home'));
 const Movies = lazy(() => import('../pages/movie/movies'));
 const MovieDetails = lazy(() =>
-  import('./Movie-detail/MovieDetails')
+  import('../pages/Movie-detail/MovieDetails')
 );
 
 export const App = () => {

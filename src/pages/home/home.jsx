@@ -13,11 +13,17 @@ const Home = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getTrendingMovies().then(data => {
-      setTrendMovies(data.results);
+    try {
+      getTrendingMovies().then(data => {
+        setTrendMovies(data.results);
+      });
+    } catch (error) {
+      console.error('Error occurred while fetching trending movies:', error);
+    } finally {
       setIsLoading(false);
-    });
+    }
   }, []);
+  
   const path = 'https://image.tmdb.org/t/p/w300';
   return (
     <HomeContainer>

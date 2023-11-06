@@ -5,15 +5,22 @@ import { CastStyled } from './Cast.styled';
 
 const Cast = () => {
   const [castList, setCastList] = useState([]);
+  const [hasCast, setHasCast] = useState(true);
   const { movieId } = useParams();
+
   useEffect(() => {
-    getMovieCast(movieId).then(data => setCastList(data.cast));
+    getMovieCast(movieId).then(data => {
+      setCastList(data.cast);
+      setHasCast(data.cast.length > 0);
+    });
   }, [movieId]);
 
   return (
-    <CastStyled>
-      {castList.length > 0
-        ? castList.map(({ id, name, profile_path, character }) => (
+    <>
+      {!hasCast && <div>Sorry, there is no cast information for this movie</div>}
+      <CastStyled>
+        {hasCast &&
+          castList.map(({ id, name, profile_path, character }) => (
             <li key={id} className="cast-item">
               <img
                 className="photo-img"
@@ -30,9 +37,10 @@ const Cast = () => {
               <h4 className="name-title">{name}</h4>
               <p className="character">{character}</p>
             </li>
-          ))
-        : 'No one has left a review yet'}
-    </CastStyled>
+          ))}
+      </CastStyled>
+    </>
   );
 };
+
 export default Cast;

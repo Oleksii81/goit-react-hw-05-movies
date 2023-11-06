@@ -3,10 +3,10 @@ import { Suspense } from 'react';
 import { Link, useParams, Outlet, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMovieDetails } from '../../api/api';
-import { MovieDetailsStyled } from './MovieDetails.styled'
+import { MovieDetailsStyled } from './MovieDetails.styled';
 
 const MovieDetails = () => {
-  const [movieDetail, setMovieDetail] = useState({});
+  const [movieDetail, setMovieDetail] = useState(null);
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
   const { movieId } = useParams();
@@ -14,6 +14,10 @@ const MovieDetails = () => {
   useEffect(() => {
     getMovieDetails(movieId).then(data => setMovieDetail(data));
   }, [movieId]);
+
+  if (!movieDetail) {
+    return null;
+  }
 
   const {
     original_title,

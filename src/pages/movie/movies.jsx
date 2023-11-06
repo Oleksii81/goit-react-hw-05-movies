@@ -15,25 +15,31 @@ const Movies = () => {
     const [error, setError] = useState(false);
   
     useEffect(() => {
-      if (movieName === '') {
-        return;
-      }
-      setMoviesList([]);
-      setIsLoading(true);
-  
-      searchMovies(movieName).then(data => {
-        if (!data.results.length) {
-          setIsLoading(false);
-          setError(true);
-          return console.log(
-            'There is no movies with this request. Please, try again'
-          );
+        if (movieName === '') {
+          return;
         }
-        setError(false);
-        setMoviesList(data.results);
-        setIsLoading(false);
-      });
-    }, [movieName]);
+        setMoviesList([]);
+        setIsLoading(true);
+      
+        try {
+          searchMovies(movieName).then(data => {
+            if (!data.results.length) {
+              setIsLoading(false);
+              setError(true);
+              return console.log(
+                'There is no movies with this request. Please, try again'
+              );
+            }
+            setError(false);
+            setMoviesList(data.results);
+          });
+        } catch (error) {
+          console.error('Error occurred while fetching movies:', error);
+        } finally {
+          setIsLoading(false);
+        }
+      }, [movieName]);
+      
   
     const handleSubmit = e => {
       e.preventDefault();
