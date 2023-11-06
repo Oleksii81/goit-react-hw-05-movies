@@ -39,8 +39,8 @@ const Home = () => {
             <p className='original-title'>{movie.original_title}</p>
           </li>
         ))}
-        {isLoading && <Loader />}
       </ul>
+      <div>{isLoading && <Loader />}</div>
     </HomeContainer>
   );
 };

@@ -73,8 +73,8 @@ const Movies = () => {
               </li>
             );
           })}
-          {isLoading && <Loader />}
         </ul>
+        <div>{isLoading && <Loader />}</div>
       </MoviesContainer>
     );
   };
