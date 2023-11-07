@@ -46,7 +46,7 @@ const Home = () => {
           </li>
         ))}
       </ul>
-      <div>{isLoading && <Loader />}</div>
+      {isLoading && <div><Loader /></div>}
     </HomeContainer>
   );
 };

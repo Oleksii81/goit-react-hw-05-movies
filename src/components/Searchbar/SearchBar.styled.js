@@ -8,7 +8,7 @@ export const SearchBarStyled = styled.form`
     .search-input {
         margin-right: 24px;
         height: 32px;
-        min-width: 180px;
+        width: 300px;
         padding-left: 8px;
         border-radius: 5px;
         border-color: transparent;
@@ -17,9 +17,7 @@ export const SearchBarStyled = styled.form`
         align-items: center;
         transition: width 1,5s ease-in-out;
     }
-    .search-input:focus {
-        width: 300px;
-    }
+    
     .search-input:hover {
     border-color: #daf52e;
     box-shadow: 0px 3px 20px rgb(247, 243, 4);

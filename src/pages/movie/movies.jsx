@@ -1,5 +1,6 @@
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
+import { toast } from 'react-toastify';
 import { useState, useEffect } from 'react';
 import { searchMovies } from '../../api/api';
 import SearchBar from '../../components/Searchbar/SearchBar';
@@ -26,7 +27,7 @@ const Movies = () => {
             if (!data.results.length) {
               setIsLoading(false);
               setError(true);
-              return console.log(
+              return toast.error(
                 'There is no movies with this request. Please, try again'
               );
             }
@@ -34,7 +35,7 @@ const Movies = () => {
             setMoviesList(data.results);
           });
         } catch (error) {
-          console.error('Error occurred while fetching movies:', error);
+            toast.error('Error occurred while fetching movies:', error);
         } finally {
           setIsLoading(false);
         }
@@ -80,7 +81,7 @@ const Movies = () => {
             );
           })}
         </ul>
-        <div>{isLoading && <Loader />}</div>
+        {isLoading && <div><Loader /></div>}
       </MoviesContainer>
     );
   };

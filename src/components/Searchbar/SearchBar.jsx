@@ -9,7 +9,7 @@ const SearchBar = ({ onSubmit }) => {
         type="text"
         name="movieName"
         pattern="^[a-zA-Zа-яА-Я0-9]+([' \-][a-zA-Zа-яА-Я0-9]+)*$"
-        title="May contain only letters, apostrophe, dash and spaces. For example moon"
+        title="May contain only letters, apostrophe, dash numbers and spaces"
         required
         autoComplete="off"
         autoFocus
