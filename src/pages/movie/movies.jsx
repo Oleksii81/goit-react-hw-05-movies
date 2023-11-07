@@ -43,18 +43,19 @@ const Movies = () => {
           fetchData();
         }, [movieName]);
       
-  
-    const handleSubmit = e => {
-      e.preventDefault();
-      const searchForm = e.currentTarget;
-      setSearchParams({ movieName: searchForm.elements.movieName.value });
-    };
+    const onSubmit = value => {
+            if (movieName === value) {
+              return toast.info('Please search something else');
+            }
+            setSearchParams(value !== '' ? { movieName: value } : {});
+          };
+    
   
     const path = 'https://image.tmdb.org/t/p/w300';
   
     return (
       <MoviesContainer>
-        <SearchBar className="searchbar" onSubmit={handleSubmit} />
+        <SearchBar className="searchbar" onSubmit={onSubmit} />
         {error && <p>We can't find any movie with this name</p>}
         <ul className="search-movie-list">
           {moviesList.map(movie => {
