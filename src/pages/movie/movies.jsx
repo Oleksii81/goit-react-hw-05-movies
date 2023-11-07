@@ -22,24 +22,26 @@ const Movies = () => {
         setMoviesList([]);
         setIsLoading(true);
       
-        try {
-          searchMovies(movieName).then(data => {
-            if (!data.results.length) {
-              setIsLoading(false);
+        const fetchData = async () => {
+            try {
+              const data = await searchMovies(movieName);
+              if (!data.results.length) {
+                setError(true);
+                toast.error('There is no movies with this request. Please, try again');
+              } else {
+                setError(false);
+                setMoviesList(data.results);
+              }
+            } catch (error) {
               setError(true);
-              return toast.error(
-                'There is no movies with this request. Please, try again'
-              );
+              toast.error('Error occurred while fetching movies:', error);
+            } finally {
+              setIsLoading(false);
             }
-            setError(false);
-            setMoviesList(data.results);
-          });
-        } catch (error) {
-            toast.error('Error occurred while fetching movies:', error);
-        } finally {
-          setIsLoading(false);
-        }
-      }, [movieName]);
+          };
+        
+          fetchData();
+        }, [movieName]);
       
   
     const handleSubmit = e => {
